@@ -9,18 +9,30 @@ import { RequestsService } from '../requests.service';
 })
 export class ResidentsComponent implements OnInit {
 
+  planets = [];
+
   constructor(
     private requests: RequestsService
   ) {}
 
   ngOnInit() {
+    this.getResidents();
   }
 
 
   getResidents() {
     this.requests.getResidents()
       .subscribe((res) => {
-        console.log(res);
+        this.planets = res['results'].map((p) => {
+          let planet = {};
+
+          planet['name'] = p.name;
+          planet['residents'] = p.residents;
+
+          return planet;
+        })
+
+        console.log('planets', this.planets);
       });
   }
 

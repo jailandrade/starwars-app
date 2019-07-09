@@ -1,8 +1,12 @@
-<mat-menu #appMenu="matMenu">
-  <button mat-menu-item>Settings</button>
-  <button mat-menu-item>Help</button>
-</mat-menu>
+<mat-toolbar color="primary">
+  <a routerLink="/" class="menu-item">StarWars App</a>
 
-<h1>Hey</h1>
+  <span class="fill-remaining-space"></span>
+
+  <a routerLink="/personajes" class="menu-item">Personajes</a>
+  <a routerLink="/residentes" class="menu-item">Residentes</a>
+</mat-toolbar>
+
+
 
 <router-outlet></router-outlet>

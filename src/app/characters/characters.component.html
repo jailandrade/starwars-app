@@ -1,3 +1,30 @@
-<p>
-  characters works!
-</p>
+<mat-tab-group>
+  <mat-tab label="Buscar personaje por nombre">
+    <mat-form-field>
+      <mat-label>Busca un personaje</mat-label>
+      <input matInput placeholder="Al terminar da enter" (keyup.enter)="getCharacterByName($event)">
+    </mat-form-field>
+
+    <mat-card *ngIf="(character | json) != '{}'">
+      <mat-card-title>{{character?.name}}</mat-card-title>
+      <mat-card-content>
+        <p><strong>Nacimiento:</strong> {{character?.birth_year}}</p>
+        <p><strong>Genero</strong> {{character?.gender}}</p>
+        <p><strong>Altura:</strong> {{character?.height}}</p>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+
+  <mat-tab label="Obtener todos los personajes">
+    <mat-card>
+      <mat-card-title>Lista de todos los personajes</mat-card-title>
+      <mat-card-content>
+        <mat-nav-list>
+          <mat-list-item *ngFor="let c of characters">
+            <h3 matLine>{{ c.name }}</h3>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>

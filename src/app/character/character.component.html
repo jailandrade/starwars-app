@@ -1,0 +1,9 @@
+
+<mat-card *ngIf="(character | json) != '{}'">
+  <mat-card-title>{{character?.name}}</mat-card-title>
+  <mat-card-content>
+    <p><strong>Nacimiento:</strong> {{character?.birth_year}}</p>
+    <p><strong>Genero</strong> {{character?.gender}}</p>
+    <p><strong>Altura:</strong> {{character?.height}}</p>
+  </mat-card-content>
+</mat-card>

@@ -1,3 +1,11 @@
-<p>
-
-</p>
+<mat-card>
+  <mat-card-title>Lista de residentes por planeta</mat-card-title>
+  <mat-card-content>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let planet of planets">
+        <h3 matLine>{{ planet.name }}</h3>
+        <a [routerLink]="['/personaje', c]" matLine *ngFor="let c of planet.residents">{{c}}</a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-card-content>
+</mat-card>

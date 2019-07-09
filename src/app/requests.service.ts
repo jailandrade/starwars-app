@@ -17,8 +17,12 @@ export class RequestsService {
     return this.http.get(this.api_url);
   }
 
-  getCharacter(name: string) {
+  getCharacterByName(name: string) {
     return this.http.get(this.api_url+'people/?search=' + name);
+  }
+
+  getCharacterByUrl(url: string) {
+    return this.http.get(url);
   }
 
   getCharacters() {

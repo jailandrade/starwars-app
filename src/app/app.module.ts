@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { CharactersComponent } from './characters/characters.component';
 import { ResidentsComponent } from './residents/residents.component';
 import { MaterialModule } from './material-module';
+import { CharacterComponent } from './character/character.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CharactersComponent,
-    ResidentsComponent
+    ResidentsComponent,
+    CharacterComponent
   ],
   imports: [
     BrowserModule,

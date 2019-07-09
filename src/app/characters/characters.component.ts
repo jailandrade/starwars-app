@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../requests.service';
 
-
 @Component({
   selector: 'app-characters',
   templateUrl: './characters.component.html',
@@ -9,25 +8,37 @@ import { RequestsService } from '../requests.service';
 })
 export class CharactersComponent implements OnInit {
 
+  characters = [];
+  character = {};
+
   constructor(
     private requests: RequestsService
   ) {}
 
   ngOnInit() {
+    this.getCharacters();
   }
 
-  getCharacterByName(name: string) {
+  getCharacterByName(event) {
 
-    this.requests.getCharacter(name)
+    console.log(event.target.value);
+
+    this.requests.getCharacterByName(event.target.value)
       .subscribe((res) => {
         console.log('character', res);
+        if (res['count'] > 0) {
+          this.character = res['results'][0];
+        } else {
+          this.character = {};
+        }
+
       });
   }
 
   getCharacters() {
     this.requests.getCharacters()
       .subscribe((res) => {
-        console.log(res);
+        this.characters = res['results'];
       });
   }
 
