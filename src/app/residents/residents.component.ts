@@ -27,7 +27,9 @@ export class ResidentsComponent implements OnInit {
           let planet = {};
 
           planet['name'] = p.name;
-          planet['residents'] = p.residents;
+          planet['residents'] = p.residents.map((r) => {
+            return r.split('/')[r.split('/').length-2];
+          });
 
           return planet;
         })

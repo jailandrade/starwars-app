@@ -19,15 +19,15 @@ export class CharacterComponent implements OnInit {
 
   ngOnInit() {
 
-   let url = this.route.snapshot.params.url;
+   let id = this.route.snapshot.params.id;
 
-   this.getCharacterByUrl(url)
+   this.getCharacterByUrl(parseInt(id));
 
   }
 
-  getCharacterByUrl(url: string) {
+  getCharacterByUrl(id: number) {
 
-    this.requests.getCharacterByUrl(url)
+    this.requests.getCharacterById(id)
       .subscribe((res) => {
         if (res) {
           this.character = res;
