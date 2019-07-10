@@ -1,4 +1,19 @@
 <mat-tab-group>
+  <mat-tab label="Obtener todos los personajes">
+    <mat-card>
+      <mat-card-title>Lista de todos los personajes</mat-card-title>
+      <mat-card-content>
+        <mat-nav-list>
+          <mat-list-item *ngFor="let c of characters">
+            <h3 matLine><strong>Nombre:</strong> {{ c?.nombre }}</h3>
+            <p matLine><strong>Peso:</strong> {{ c?.peso }} kgs</p>
+            <p matLine><strong>Altura:</strong> {{ c?.altura }} cms</p>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+
   <mat-tab label="Buscar personaje por nombre">
     <mat-form-field>
       <mat-label>Busca un personaje</mat-label>
@@ -15,16 +30,5 @@
     </mat-card>
   </mat-tab>
 
-  <mat-tab label="Obtener todos los personajes">
-    <mat-card>
-      <mat-card-title>Lista de todos los personajes</mat-card-title>
-      <mat-card-content>
-        <mat-nav-list>
-          <mat-list-item *ngFor="let c of characters">
-            <h3 matLine>{{ c.name }}</h3>
-          </mat-list-item>
-        </mat-nav-list>
-      </mat-card-content>
-    </mat-card>
-  </mat-tab>
+
 </mat-tab-group>
