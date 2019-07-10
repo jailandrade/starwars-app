@@ -29,8 +29,8 @@ export class RequestsService {
     return this.http.get(url);
   }
 
-  getCharacters() {
-    return this.http.get(this.api_url+'people/')
+  getCharacters(page: number) {
+    return this.http.get(this.api_url+'people/'+'?page='+ page)
   }
 
   getResidents() {

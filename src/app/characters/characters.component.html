@@ -3,6 +3,7 @@
   <table>
     <thead>
       <tr>
+        <th>Nombre</th>
         <th>Nacimiento</th>
         <th>Genero</th>
         <th>Altura</th>
@@ -17,6 +18,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let character of characters">
+        <td>{{character?.name}}</td>
         <td>{{character?.birth_year}}</td>
         <td>{{character?.gender}}</td>
         <td>{{character?.height}}</td>
@@ -30,5 +32,11 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="pagination">
+    <button mat-button [disabled]="page === 1" (click)="getPagination('back')">Atras</button>
+    <p>Pagina {{this.page}}</p>
+    <button mat-button [disabled]="page === pagination" (click)="getPagination('next')">Siguiente</button>
+  </div>
 </mat-card>
 

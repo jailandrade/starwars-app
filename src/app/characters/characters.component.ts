@@ -13,6 +13,9 @@ export class CharactersComponent implements OnInit {
 
   characters = [];
   character = {};
+  page: number = 1;
+  pagination: number;
+  query = '';
 
 
   constructor(
@@ -22,18 +25,30 @@ export class CharactersComponent implements OnInit {
 
   ngOnInit() {
 
-
     this.route.queryParams.subscribe(params => {
       console.log(params)
       if (params.ordenar) {
-        let query = params.ordenar;
+        this.query = params.ordenar;
 
-        this.getCharacters(query);
+        this.getCharacters(this.query, this.page);
       } else {
-        this.getCharacters('');
+        this.getCharacters('', this.page);
       }
     });
 
+  }
+
+  getPagination(type: string) {
+    console.log('type ', type);
+
+    if (type === 'back' && this.page !== 0) {
+      this.page = this.page - 1;
+    } else if (type === 'next' && this.page !== this.pagination) {
+      this.page = this.page + 1;
+    }
+
+    console.log('print page ', this.page);
+    this.getCharacters(this.query, this.page);
 
   }
 
@@ -41,11 +56,24 @@ export class CharactersComponent implements OnInit {
     return this.requests.getResourceByUrl(uri);
   }
 
-  getCharacters(type: string) {
-    this.requests.getCharacters()
+  getCharacters(type: string, page: number) {
+    if (page === undefined || page === null) {
+      page = 0
+    }
+
+    this.requests.getCharacters(page)
       .subscribe((res) => {
+        this.pagination = Math.round(res['count']/10);
+        console.log(this.pagination)
         this.characters = res['results'].map((c) => {
 
+          if (c['mass'] === 'unknown') {
+            c['mass'] = 0
+          }
+
+          if (c['height'] === 'unknown') {
+            c['height'] = 0
+          }
           this.getPlanetByName(c['homeworld']).subscribe((p) => {
             c['planet'] = p['name'];
           })
@@ -66,6 +94,8 @@ export class CharactersComponent implements OnInit {
 
   orderByName(type) {
     console.log('ordering by nombre');
+    type = 'name';
+
     this.characters.sort(function (a, b) {
       if (a[type] > b[type]) {
         return 1;
@@ -80,6 +110,14 @@ export class CharactersComponent implements OnInit {
 
   orderByNumber(type) {
     console.log('ordering by ', type);
+    if (type === 'peso') {
+      type = 'mass';
+    }
+
+    if (type === 'altura') {
+      type = 'height';
+    }
+
     this.characters.sort(function (a, b) {
       if (parseInt(a[type]) > parseInt(b[type])) {
         return 1;
