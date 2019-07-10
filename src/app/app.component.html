@@ -3,7 +3,12 @@
 
   <span class="fill-remaining-space"></span>
 
-  <a routerLink="/personajes" class="menu-item">Personajes</a>
+  <button mat-button [matMenuTriggerFor]="menu">Personajes</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="goTo('all')">Todos</button>
+    <button mat-menu-item (click)="goTo('single')">Buscar por nombre</button>
+  </mat-menu>
+
   <a routerLink="/residentes" class="menu-item">Residentes</a>
 </mat-toolbar>
 

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RequestsService } from '../requests.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-characters',
@@ -12,6 +13,7 @@ export class CharactersComponent implements OnInit {
 
   characters = [];
   character = {};
+
 
   constructor(
     private requests: RequestsService,
@@ -30,36 +32,32 @@ export class CharactersComponent implements OnInit {
       } else {
         this.getCharacters('');
       }
-    })
+    });
+
 
   }
 
-  getCharacterByName(event) {
-
-    this.requests.getCharacterByName(event.target.value)
-      .subscribe((res) => {
-        console.log('character', res);
-        if (res['count'] > 0) {
-          this.character = res['results'][0];
-        } else {
-          this.character = {};
-        }
-
-      });
+  getPlanetByName(uri: string) {
+    this.requests.getResourceByUrl(uri)
+      .subscribe((planet) => {
+        console.log('planet', planet);
+        return planet['name'];
+      })
   }
 
   getCharacters(type: string) {
     this.requests.getCharacters()
       .subscribe((res) => {
-         this.characters = res['results'].map((c) => {
-          let character = {};
+        this.characters = res['results'].map((c) => {
 
-          character['nombre'] = c.name;
-          character['altura'] = c.height;
-          character['peso'] = c.mass;
+          let planet = this.getPlanetByName(c['homeworld'])
 
-          return character;
-        })
+          c['planet'] = planet;
+
+          return c;
+        });
+
+        console.log('characters ', this.characters);
 
         if (type != '' && type === 'nombre') {
           this.orderByName(type);

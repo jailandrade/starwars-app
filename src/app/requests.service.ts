@@ -25,6 +25,10 @@ export class RequestsService {
     return this.http.get(this.api_url+'people/' + id);
   }
 
+  getResourceByUrl(url: string) {
+    return this.http.get(url);
+  }
+
   getCharacters() {
     return this.http.get(this.api_url+'people/')
   }

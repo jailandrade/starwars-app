@@ -12,6 +12,8 @@ import { CharactersComponent } from './characters/characters.component';
 import { ResidentsComponent } from './residents/residents.component';
 import { MaterialModule } from './material-module';
 import { CharacterComponent } from './character/character.component';
+import { MatTreeModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { InfoComponent } from './info/info.component';
 
 
 @NgModule({
@@ -19,14 +21,18 @@ import { CharacterComponent } from './character/character.component';
     AppComponent,
     CharactersComponent,
     ResidentsComponent,
-    CharacterComponent
+    CharacterComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    MatTreeModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

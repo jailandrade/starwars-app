@@ -1,3 +1,9 @@
+<mat-card>
+  <mat-form-field>
+    <mat-label>Busca un personaje</mat-label>
+    <input matInput placeholder="Al terminar da enter" (keyup.enter)="getCharacterByName($event)">
+  </mat-form-field>
+</mat-card>
 
 <mat-card *ngIf="(character | json) != '{}'">
   <mat-card-title>{{character?.name}}</mat-card-title>
@@ -5,5 +11,12 @@
     <p><strong>Nacimiento:</strong> {{character?.birth_year}}</p>
     <p><strong>Genero</strong> {{character?.gender}}</p>
     <p><strong>Altura:</strong> {{character?.height}}</p>
+    <p><strong>Peso:</strong>{{character.mass}}</p>
+    <p><strong>Color de cabello:</strong>{{character.hair_color}}</p>
+    <p><strong>Color de piel:</strong>{{character.skin_color}}</p>
+    <p><strong>Color de ojo: </strong>{{character.eye_color}}</p>
+    <p><strong>Año de nacimiento: </strong>{{character.birth_year}}</p>
+    <p><strong>Genero: </strong>{{character.gender}}</p>
+    <p><strong>Planeta: </strong>{{character.homeworld}}</p>
   </mat-card-content>
 </mat-card>
