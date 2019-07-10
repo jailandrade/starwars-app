@@ -3,8 +3,9 @@
   <mat-card-content>
     <mat-nav-list>
       <mat-list-item *ngFor="let planet of planets">
-        <h3 matLine>{{ planet.name }}</h3>
-        <a [routerLink]="['/personaje', c]" matLine *ngFor="let c of planet.residents">Id: {{c}}</a>
+        <h1 matLine>Planeta {{ planet.name }}</h1>
+        <p matLine *ngIf="planet.residents.length === 0">Planeta sin residentes</p>
+        <a [routerLink]="['/personaje', c.id]" matLine *ngFor="let c of planet.residents">Nombre: {{c.name}}</a>
       </mat-list-item>
     </mat-nav-list>
   </mat-card-content>

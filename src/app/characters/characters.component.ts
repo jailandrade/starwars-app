@@ -38,11 +38,7 @@ export class CharactersComponent implements OnInit {
   }
 
   getPlanetByName(uri: string) {
-    this.requests.getResourceByUrl(uri)
-      .subscribe((planet) => {
-        console.log('planet', planet);
-        return planet['name'];
-      })
+    return this.requests.getResourceByUrl(uri);
   }
 
   getCharacters(type: string) {
@@ -50,9 +46,9 @@ export class CharactersComponent implements OnInit {
       .subscribe((res) => {
         this.characters = res['results'].map((c) => {
 
-          let planet = this.getPlanetByName(c['homeworld'])
-
-          c['planet'] = planet;
+          this.getPlanetByName(c['homeworld']).subscribe((p) => {
+            c['planet'] = p['name'];
+          })
 
           return c;
         });

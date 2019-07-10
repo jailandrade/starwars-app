@@ -19,6 +19,10 @@ export class ResidentsComponent implements OnInit {
     this.getResidents();
   }
 
+  getByName(uri: string) {
+    return this.requests.getResourceByUrl(uri);
+  }
+
 
   getResidents() {
     this.requests.getResidents()
@@ -26,10 +30,19 @@ export class ResidentsComponent implements OnInit {
         this.planets = res['results'].map((p) => {
           let planet = {};
 
+
           planet['name'] = p.name;
           planet['residents'] = p.residents.map((r) => {
-            return r.split('/')[r.split('/').length-2];
+            let resident = {};
+            resident['id'] = r.split('/')[r.split('/').length-2];
+            resident['url'] = r;
+            this.getByName(r).subscribe((p) => {
+              resident['name'] = p['name'];
+            })
+
+            return resident;
           });
+
 
           return planet;
         })
