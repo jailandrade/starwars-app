@@ -68,11 +68,11 @@ export class CharactersComponent implements OnInit {
         this.characters = res['results'].map((c) => {
 
           if (c['mass'] === 'unknown') {
-            c['mass'] = 0
+            c['mass'] = "0"
           }
 
           if (c['height'] === 'unknown') {
-            c['height'] = 0
+            c['height'] = "0"
           }
           this.getPlanetByName(c['homeworld']).subscribe((p) => {
             c['planet'] = p['name'];
@@ -119,10 +119,14 @@ export class CharactersComponent implements OnInit {
     }
 
     this.characters.sort(function (a, b) {
-      if (parseInt(a[type]) > parseInt(b[type])) {
+
+      let valueA = parseFloat(a[type].replace(',', ''));
+      let valueB = parseFloat(b[type].replace(',', ''));
+
+      if (valueA > valueB) {
         return 1;
       }
-      if (parseInt(a[type]) < parseInt(b[type])) {
+      if (valueA < valueB) {
         return -1;
       }
       // a must be equal to b
