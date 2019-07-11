@@ -1,12 +1,45 @@
 <mat-card>
   <mat-card-title>Lista de residentes por planeta</mat-card-title>
   <mat-card-content>
-    <mat-nav-list>
-      <mat-list-item *ngFor="let planet of planets">
-        <h1 matLine>Planeta {{ planet.name }}</h1>
-        <p matLine *ngIf="planet.residents.length === 0">Planeta sin residentes</p>
-        <a [routerLink]="['/personaje', c.id]" matLine *ngFor="let c of planet.residents">Nombre: {{c.name}}</a>
-      </mat-list-item>
-    </mat-nav-list>
+    <div >
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Nacimiento</th>
+            <th>Genero</th>
+            <th>Altura</th>
+            <th>Peso</th>
+            <th>Color de cabello</th>
+            <th>Color de piel</th>
+            <th>Color de ojo</th>
+            <th>Año de nacimiento</th>
+            <th>Genero</th>
+            <th>Planeta</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let planet of planets">
+          <tr *ngFor="let character of planet.residents">
+            <td>{{character?.name}}</td>
+            <td>{{character?.birth_year}}</td>
+            <td>{{character?.gender}}</td>
+            <td>{{character?.height}}</td>
+            <td>{{character.mass}}</td>
+            <td>{{character.hair_color}}</td>
+            <td>{{character.skin_color}}</td>
+            <td>{{character.eye_color}}</td>
+            <td>{{character.birth_year}}</td>
+            <td>{{character.gender}}</td>
+            <td>{{character.planet}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <button mat-button [disabled]="page === 1" (click)="getPagination('back')">Atras</button>
+      <p>Pagina {{this.page}}</p>
+      <button mat-button [disabled]="page === pagination" (click)="getPagination('next')">Siguiente</button>
+    </div>
   </mat-card-content>
 </mat-card>

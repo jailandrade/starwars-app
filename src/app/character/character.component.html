@@ -6,17 +6,36 @@
 </mat-card>
 
 <mat-card *ngIf="(character | json) != '{}'">
-  <mat-card-title>{{character?.name}}</mat-card-title>
-  <mat-card-content>
-    <p><strong>Nacimiento:</strong> {{character?.birth_year}}</p>
-    <p><strong>Genero</strong> {{character?.gender}}</p>
-    <p><strong>Altura:</strong> {{character?.height}}</p>
-    <p><strong>Peso:</strong>{{character.mass}}</p>
-    <p><strong>Color de cabello:</strong>{{character.hair_color}}</p>
-    <p><strong>Color de piel:</strong>{{character.skin_color}}</p>
-    <p><strong>Color de ojo: </strong>{{character.eye_color}}</p>
-    <p><strong>Año de nacimiento: </strong>{{character.birth_year}}</p>
-    <p><strong>Genero: </strong>{{character.gender}}</p>
-    <p><strong>Planeta: </strong>{{character.homeworld}}</p>
-  </mat-card-content>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Nacimiento</th>
+        <th>Genero</th>
+        <th>Altura</th>
+        <th>Peso</th>
+        <th>Color de cabello</th>
+        <th>Color de piel</th>
+        <th>Color de ojo</th>
+        <th>Año de nacimiento</th>
+        <th>Genero</th>
+        <th>Planeta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{character?.name}}</td>
+        <td>{{character?.birth_year}}</td>
+        <td>{{character?.gender}}</td>
+        <td>{{character?.height}}</td>
+        <td>{{character.mass}}</td>
+        <td>{{character.hair_color}}</td>
+        <td>{{character.skin_color}}</td>
+        <td>{{character.eye_color}}</td>
+        <td>{{character.birth_year}}</td>
+        <td>{{character.gender}}</td>
+        <td>{{character.planet}}</td>
+      </tr>
+    </tbody>
+  </table>
 </mat-card>

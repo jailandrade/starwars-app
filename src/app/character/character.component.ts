@@ -19,12 +19,11 @@ export class CharacterComponent implements OnInit {
 
   ngOnInit() {
 
-    let id = this.route.snapshot.params.id;
 
-    if (parseInt(id) !== 0) {
-      this.getCharacterByUrl(parseInt(id));
-    }
+  }
 
+  getPlanetByName(uri: string) {
+    return this.requests.getResourceByUrl(uri);
   }
 
   getCharacterByName(event) {
@@ -34,9 +33,16 @@ export class CharacterComponent implements OnInit {
         console.log('character', res);
         if (res['count'] > 0) {
           this.character = res['results'][0];
+
+          this.getPlanetByName(this.character['homeworld']).subscribe((p) => {
+            this.character['planet'] = p['name'];
+          })
+
         } else {
           this.character = {};
         }
+
+        console.log(this.character)
 
       });
   }
@@ -47,7 +53,8 @@ export class CharacterComponent implements OnInit {
       .subscribe((res) => {
         if (res) {
           this.character = res;
-          console.log(this.character)
+
+
         }
       });
   }

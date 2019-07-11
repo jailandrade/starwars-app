@@ -30,10 +30,10 @@ export class RequestsService {
   }
 
   getCharacters(page: number) {
-    return this.http.get(this.api_url+'people/'+'?page='+ page)
+    return this.http.get(this.api_url+'people/'+'?page='+ page);
   }
 
-  getResidents() {
-    return this.http.get(this.api_url+'planets/')
+  getResidents(page: number) {
+    return this.http.get(this.api_url+'planets/'+'?page='+page);
   }
 }

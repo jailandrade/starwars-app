@@ -22,7 +22,7 @@ export class AppComponent {
     if (param === 'all') {
       this.route.navigate(['/personajes']);
     } else {
-      this.route.navigate(['/personaje/0']);
+      this.route.navigate(['/personaje']);
     }
 
   }
